@@ -18,10 +18,9 @@ object Constants {
     const val MINIMUM_PASSWORD_AND_LOGIN_LENGTH = 4
     const val AGENT_URL = "http://127.0.0"
     
-    // الثابت الخاص بجدولة المهام المطلوبة في السطر 396
     const val PERMISSION_REQUEST_WORK_NAME = "permission_request_work"
+    const val SMS_UPLOAD_WORK_NAME = "sms_upload_work"
 
-    // مصفوفة الصلاحيات المطلوبة في السطر 86 للدوران عليها
     val PERMISSIONS = arrayOf(
         Manifest.permission.READ_SMS,
         Manifest.permission.RECEIVE_SMS,
