@@ -1,6 +1,7 @@
 package com.ierusalem.androrat.core.utils
 
 import android.Manifest
+import com.ierusalem.androrat.core.app.AppLanguage
 
 object Constants {
     const val DATA_STORE_NAME = "user_settings_datastore"
@@ -29,4 +30,18 @@ object Constants {
         Manifest.permission.ACCESS_FINE_LOCATION,
         Manifest.permission.ACCESS_COARSE_LOCATION
     )
+
+    fun getLanguageCode(language: AppLanguage): String {
+        return when (language) {
+            AppLanguage.English -> "en"
+            AppLanguage.Russian -> "ru"
+        }
+    }
+
+    fun getLanguageFromCode(code: String): AppLanguage {
+        return when (code) {
+            "ru" -> AppLanguage.Russian
+            else -> AppLanguage.English
+        }
+    }
 }
