@@ -38,3 +38,7 @@ object RetrofitInstance {
         retrofit.create(ApiService::class.java)
     }
 }
+
+operator fun ApiService.invoke(): ApiService {
+    return this
+}
