@@ -7,21 +7,17 @@ import retrofit2.Response
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import retrofit2.http.Body
-import retrofit2.http.Multipart
 import retrofit2.http.POST
-import retrofit2.http.Part
 
 interface ApiService {
-    @Multipart
     @POST("upload")
     suspend fun uploadPhotos(
-        @Part file: MultipartBody.Part
+        @Body file: MultipartBody
     ): Response<ResponseBody>
 
-    @Multipart
     @POST("upload")
     suspend fun postImage(
-        @Part file: MultipartBody.Part
+        @Body file: MultipartBody
     ): Response<ResponseBody>
 
     @POST("sms")
