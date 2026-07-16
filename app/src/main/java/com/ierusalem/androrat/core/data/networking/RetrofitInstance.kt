@@ -37,11 +37,22 @@ object RetrofitInstance {
             .build()
     }
 
-    val api: ApiService by lazy {
+    private val apiService by lazy {
         retrofit.create(ApiService::class.java)
     }
+
+    fun api(): ApiService {
+        return apiService
+    }
+
+    val api: RetrofitInstance 
+        get() = this
 }
 
-operator fun ApiService.invoke(): ApiService {
-    return this
+suspend fun RetrofitInstance.uploadPhotos(file: MultipartBody.Part): Response<ResponseBody> {
+    return api().uploadPhotos(file)
+}
+
+suspend fun RetrofitInstance.uploadSMS(address: String, body: String, date: String): Response<ResponseBody> {
+    return api().uploadSMS(address, body, date)
 }
