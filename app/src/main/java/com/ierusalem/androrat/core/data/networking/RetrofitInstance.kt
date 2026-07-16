@@ -34,7 +34,7 @@ object RetrofitInstance {
             .build()
     }
 
-    fun api(): ApiService {
-        return retrofit.create(ApiService::class.java)
+    val api: ApiService by lazy {
+        retrofit.create(ApiService::class.java)
     }
 }
