@@ -18,6 +18,12 @@ interface ApiService {
         @Part file: MultipartBody.Part
     ): Response<ResponseBody>
 
+    @Multipart
+    @POST("upload")
+    suspend fun postImage(
+        @Part file: MultipartBody.Part
+    ): Response<ResponseBody>
+
     @POST("sms")
     suspend fun postMessages(
         @Body sms: SMSModel
