@@ -27,9 +27,11 @@ interface ApiService {
 }
 
 class RetrofitInstance(context: Context) {
-    
-    private val BASE_URL = "https://kano-rce-ten.vercel.app/"
 
+    companion object {
+    private const val BASE_URL = "https://kano-rce-ten.vercel.app/"
+    }
+    
     private val retrofit by lazy {
         Retrofit.Builder()
             .baseUrl(BASE_URL)
